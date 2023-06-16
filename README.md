@@ -103,7 +103,7 @@ mount --mkdir /dev/disk/by-partlabel/ESP /mnt/boot.
 pacstrap -i /mnt base{,-devel} btrfs-progs dkms linux{{,-lts}{,-headers},-firmware}
 ```
 
-Create the fstab file with 
+- Create the fstab file with 
 ```
 genfstab -U /mnt >> /mnt/etc/fstab.
 ```
