@@ -119,7 +119,16 @@ pacman -S dhclient dhcpcd git man-{db,pages} networkmanager openssh polkit vi ne
 ```
 I use neovim to edit/write files, you can install yours like nano, vim and etc
 
-
+- Edit the file /etc/NetworkManager/conf.d/dhcp.conf to contain the following:
+```
+[main]
+dhcp=dhclient
+```
+- Edit the file /etc/NetworkManager/conf.d/dns.conf to contain the following:
+```
+[main]
+dns=systemd-resolved
+```
 
 
 
