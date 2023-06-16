@@ -79,8 +79,16 @@ I'll be using a single disk, creating the necessary partitions (ESP and root) an
 mkfs.vfat -F 32 -n ESP /dev/disk/by-partlabel/ESP
 ```
 to format the ESP.
-- Do mkswap -L SWAP /dev/disk/by-partlabel/SWAP to format the SWAP partition.
-- Do mkfs.btrfs -L ROOT /dev/disk/by-partlabel/ROOT to format the / (root) partition.
+  - Do
+```
+mkswap -L SWAP /dev/disk/by-partlabel/SWAP
+```
+to format the SWAP partition.
+- Do
+```
+mkfs.btrfs -L ROOT /dev/disk/by-partlabel/ROOT
+```
+to format the / (root) partition.
 
 Activate the SWAP partition with swapon /dev/disk/by-partlabel/SWAP.
 Mount the / (root) partition with mount /dev/disk/by-partlabel/ROOT /mnt.
