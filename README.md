@@ -3,7 +3,7 @@ Arch installation and its periphery. Also the programs I use
 
 Also use [Archlinux.org](https://wiki.archlinux.org/title/installation_guide_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9))
 
-# Before we start
+# Before start
 
 - Write the Arch Linux ISO into a USB drive. There are several tools available for this, like dd, balenaEtcher, Rufus, or my personal favorite, Ventoy.
 - Disable Secure Boot in the UEFI.
@@ -74,30 +74,52 @@ I'll be using a single disk, creating the necessary partitions (ESP and root) an
     - Hit `[Write]`, and then `[Quit]`.
 
 - Now to format the partitions:
-  - Do
+  - Do `mkfs.fat -F 32 -n ESP /dev/disk/by-partlabel/ESP` to format the **ESP**.
+  - Do `mkswap -L SWAP /dev/disk/by-partlabel/SWAP` to format the **SWAP** partition.
+  - Do `mkfs.btrfs -L ROOT /dev/disk/by-partlabel/ROOT` to format the **/ (root)** partition.
+
+- Activate the **SWAP** partition with 
 ```
-mkfs.vfat -F 32 -n ESP /dev/disk/by-partlabel/ESP
+swapon /dev/disk/by-partlabel/SWAP.
 ```
-to format the ESP.
-  - Do
+- Mount the / (root) partition with
 ```
-mkswap -L SWAP /dev/disk/by-partlabel/SWAP
+mount /dev/disk/by-partlabel/ROOT /mnt.
 ```
-to format the SWAP partition.
+Mount the ESP with 
+```
+mount --mkdir /dev/disk/by-partlabel/ESP /mnt/boot.
+```
+- Do `lsblk /dev/nvme0n1` to verify everything is correct. If you did exactly what I did, you should have something like this:
+- ESP (nvme0n1p1 @ /mnt/boot)
+- SWAP (nvme0n1p2 @ [SWAP])
+- / (root) (nvme0n1p3 @ /mnt)
+
+ # Installation
+
+- Do `pacman-key --refresh-keys` to ensure the keyring is up to date.
 - Do
 ```
-mkfs.btrfs -L ROOT /dev/disk/by-partlabel/ROOT
+pacstrap -i /mnt base{,-devel} btrfs-progs dkms linux{{,-lts}{,-headers},-firmware}
 ```
-to format the / (root) partition.
 
-Activate the SWAP partition with swapon /dev/disk/by-partlabel/SWAP.
-Mount the / (root) partition with mount /dev/disk/by-partlabel/ROOT /mnt.
-Do mkdir /mnt/boot to create a directory for the ESP.
-Mount the ESP with mount /dev/disk/by-partlabel/ESP /mnt/boot.
-Do lsblk /dev/sda to verify everything is correct. If you did exactly what I did, you should have something like this:
+Create the fstab file with 
+```
+genfstab -U /mnt >> /mnt/etc/fstab.
+```
 
-    ESP (sda1 @ /mnt/boot)
-    SWAP (sda2 @ [SWAP])
-    / (root) (sda3 @ /mnt)
+# Basic system configuration
 
- 
+
+- Do `arch-chroot /mnt` to go into your system.
+- Install some important packages with
+```
+pacman -S dhclient dhcpcd git man-{db,pages} networkmanager openssh polkit vi neovim zsh{,-autosuggestions,completions,history-substring-search,syntax-highlighting}}.
+
+```
+I use neovim to edit/write files, you can install yours like nano, vim and etc
+
+
+
+
+
