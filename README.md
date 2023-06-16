@@ -1,7 +1,7 @@
 # Arch-install
 Arch installation and its periphery. Also the programs I use
 
-Also use [Archlinux.org](https://wiki.archlinux.org/title/installation_guide_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9))
+When installing, also refer to [Archlinux.org](https://wiki.archlinux.org/title/installation_guide_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9))
 
 # Before start
 
