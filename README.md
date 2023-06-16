@@ -5,7 +5,7 @@ Also use [Archlinux.org](https://wiki.archlinux.org/title/installation_guide_(%D
 
 # Before start
 
-- Write the Arch Linux ISO into a USB drive. There are several tools available for this, like dd, balenaEtcher, Rufus, or my personal favorite, Ventoy.
+- Write the Arch Linux ISO into a USB drive. There are several tools available for this, like dd, balenaEtcher, Rufus, or my personal favorite, Rufus.
 - Disable Secure Boot in the UEFI.
 
 - Boot from the USB drive.
