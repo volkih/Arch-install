@@ -30,9 +30,17 @@ Ethernet: Connect the cable.
 
 Set up network connections:
 
-DHCP: Setting dynamic IP and DNS server address (using systemd-networkd and systemd-resolved) should work automatically for wired and wireless network interfaces.
-Static IP: See Network Setup#Static IP Address.
+[DHCP](https://wiki.archlinux.org/title/Network_configuration_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)#DHCP): Setting dynamic IP and DNS server address (using [systemd-networkd](https://wiki.archlinux.org/title/Systemd-networkd_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)) and [systemd-resolved](https://wiki.archlinux.org/title/Systemd-resolved_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9))) should work automatically for wired and wireless network interfaces.
+Static IP: [See Network Setup#Static IP Address](https://wiki.archlinux.org/title/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0_%D1%81%D0%B5%D1%82%D0%B8#%D0%A1%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_IP-%D0%B0%D0%B4%D1%80%D0%B5%D1%81).
 
-The connection can be checked using the ping utility:
+The connection can be checked using the [ping](https://wiki.archlinux.org/title/Network_configuration_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9)#Ping) utility:
 
-# ping archlinux.org
+```
+ping archlinux.org
+```
+
+# Time-date
+
+
+- Now that we have an Internet connection, do timedatectl set-ntp true to update the live system clock.
+- You can then do timedatectl status to check the time (in the UTC timezone).
