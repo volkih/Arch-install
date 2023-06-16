@@ -47,7 +47,7 @@ ping archlinux.org
 - Now that we have an Internet connection, do `timedatectl set-ntp true` to update the live system clock.
 - You can then do `timedatectl status` to check the time (in the UTC timezone).
 
-# Disk pattition
+# Disk partition
 
 Onto partitioning the disk. This part is quite subjective, and can vary wildely depending on your needs. Consider reading more about this process instead of blindly following my instructions [here](https://wiki.archlinux.org/title/Arch_boot_process).
 
