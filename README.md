@@ -119,16 +119,25 @@ pacman -S dhclient dhcpcd git man-{db,pages} networkmanager openssh polkit vi ne
 ```
 I use neovim to edit/write files, you can install yours like nano, vim and etc
 
-- Edit the file /etc/NetworkManager/conf.d/dhcp.conf to contain the following:
+- Edit the file `/etc/NetworkManager/conf.d/dhcp.conf` to contain the following:
 ```
 [main]
 dhcp=dhclient
 ```
-- Edit the file /etc/NetworkManager/conf.d/dns.conf to contain the following:
+- Edit the file `/etc/NetworkManager/conf.d/dns.conf` to contain the following:
 ```
 [main]
 dns=systemd-resolved
 ```
-_____
+# Time
+
+Do `ln -svf /usr/share/zoneinfo/$(tzselect | tail -1) /etc/localtime` to set your timezone.
+Then, do `hwclock -w` to update the hardware clock.
+You can do `hwclock -r` to see the current time stored by the hardware clock. You'll notice that it takes the timezone into account.
+
+If you use a dual boot like me, then in order to not lose time when switching systems from archlinux to windows, use:
+```
+ sudo timedatectl set-local-rtc 1 --adjust-system-clock
+```
 
 
