@@ -137,7 +137,7 @@ Then, do `hwclock -w` to update the hardware clock.
 
 You can do `hwclock -r` to see the current time stored by the hardware clock. You'll notice that it takes the timezone into account.
 
-If you use a dual boot like me, then in order to not lose time when switching systems from archlinux to windows, use:
+If you use a dual boot like me, then in order to not lose time when switching systems from linux to windows, use:
 ```
  sudo timedatectl set-local-rtc 1 --adjust-system-clock
 ```
