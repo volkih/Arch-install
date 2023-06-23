@@ -53,7 +53,7 @@ Onto partitioning the disk. This part is quite subjective, and can vary wildely 
 
 I'll be using a single disk, creating the necessary partitions (ESP and root) and a SWAP partition. You can choose to simply not have a SWAP partition, or instead have a SWAP file. If you want a SWAP file, check the [Arch Wiki](https://wiki.archlinux.org/title/Swap#Swap_file). You'll need a SWAP if you want hibernation.
 
-- Do `lsblk` and identify your disk. Most of the time your disk will be identified as `sda`. If you're using NVMe, it'll most likely look something like `nvme0n1`. I'll use nvme0n1 for the example.
+- Do `lsblk` and identify your disk. Most of the time your disk will be identified as `sda`. If you're using NVMe, it'll most likely look something like `nvme0n1`. I'll use `nvme0n1` for the example.
 - Do `gdisk /dev/nvme0n1`, and then the commands `o` and `w`. They will "erase" everything in the disk and create a new partition table.
 - Do cgdisk /dev/nvme0n1:
   - create the ESP partition (NECESSARY):
@@ -247,6 +247,11 @@ _____
 You can now do `poweroff` or `reboot`.
 
 ## Congratulations! You've installed Arch Linux!
+
+
+# Post-installation system setup
+## At the end of this section, I will give a complete command with all packages so that you do not need to install individually
+
 
 
 
