@@ -254,7 +254,11 @@ You can now do `poweroff` or `reboot`.
 
 ## AUR Helper
 
-
+Instead of pacman, I use yay - it's good Pacman wrapper and AUR helper. In the future, I will use it to update/install packages
+Install command:
+```
+mkdir ~/build && cd build && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+```
 
 ## Creating a user
 
@@ -262,7 +266,10 @@ You can now do `poweroff` or `reboot`.
 ```
 ln -svf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 ```
---Change root's shell by doing chsh -s /bin/zsh.
+--Change root's shell by doing 
+```
+chsh -s /bin/zsh.
+```
     Do timedatectl set-ntp true and timedatectl status again to make sure the time is setup correctly. The RTC and Universal time should be in UTC and the Local time in your timezone.
 
     Now add a user by doing useradd -m -U -G wheel -s /bin/zsh -c "REAL NAME" USERNAME, REAL NAME being the user's real name, and USERNAME a valid username.
