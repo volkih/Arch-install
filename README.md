@@ -155,7 +155,7 @@ If you use a dual boot like me, then in order to not lose time when switching sy
 
 - Do `echo HOSTNAME > /etc/hostname`, **HOSTNAME** being the name you want your system to have.
 - The hostname must be compatible with the following regex expression: `^(:?[0-9a-zA-Z][0-9a-zA-Z-]{0,61}[0-9a-zA-Z]|[0-9a-zA-Z]{1,63})$`.
-- You can click [here](https://regexr.com/4f7ah) and put the hostname you want your computer to have in the text field to see if you can actually use it.
+- You can click [here](https://regexr.com/7fuv3) and put the hostname you want your computer to have in the text field to see if you can actually use it.
 - Edit the file `/etc/hosts` to contain the following:
 ```
 # Static table lookup for hostnames.
@@ -166,6 +166,35 @@ If you use a dual boot like me, then in order to not lose time when switching sy
 127.0.0.1 HOSTNAME.localdomain  HOSTNAME  HOSTNAME-ipv4
 ::1       HOSTNAME.localdomain  HOSTNAME  HOSTNAME-ipv6
 ```
+
+**HOSTNAME** being the hostname you chose in the previous command.
+
+______
+
+- Enable some services with `systemctl enable sshd NetworkManager systemd-resolved`.
+- If you have an SSD, do `systemctl enable fstrim.timer`.
+- Edit the file `/etc/mkinitcpio.conf` and change `udev` to `systemd` in the `HOOKS` list.
+- Update the initramfs by doing `mkinitcpio -P`.
+- Do `passwd` to give the `root` user a password
+
+# Microcode updater
+
+Install the microcode updater:
+- If you're using an Intel CPU, do
+```
+pacman -S intel-ucode.
+```
+- If you're using an AMD CPU, do
+```
+pacman -S amd-ucode.
+```
+
+
+
+
+
+
+
 
 
 
