@@ -266,21 +266,48 @@ mkdir ~/build && cd build && git clone https://aur.archlinux.org/yay.git && cd y
 ```
 ln -svf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 ```
---Change root's shell by doing 
+- Change root's shell by doing 
 ```
 chsh -s /bin/zsh.
 ```
-    Do timedatectl set-ntp true and timedatectl status again to make sure the time is setup correctly. The RTC and Universal time should be in UTC and the Local time in your timezone.
+- Now add a user by doing `useradd -m -U -G wheel -s /bin/zsh -c "REAL NAME" USERNAME`, REAL NAME being the user's real name, and USERNAME a valid username.
+- Usernames in Unix-like OSs are valid if they're compatible with the regex expression `^[a-z_]([0-9a-z_-]{0,31}|[0-9a-z_-]{0,30}\$)$`.
+- You can check if a username is valid by clicking [here](https://regexr.com/7fuv3).
+- Set the user's password with `passwd USERNAME`.
+- do `EDITOR=nvim visudo`, and do the following changes:
+  - type `/` and write `root ALL` and press enter
+  - on a new line write:
+```
+USERNAME ALL=(ALL:ALL) ALL
+```
 
-    Now add a user by doing useradd -m -U -G wheel -s /bin/zsh -c "REAL NAME" USERNAME, REAL NAME being the user's real name, and USERNAME a valid username.
-    Usernames in Unix-like OSs are valid if they're compatible with the regex expression ^[a-z_]([0-9a-z_-]{0,31}|[0-9a-z_-]{0,30}\$)$.
-    You can check if a username is valid by clicking here.
-    Set the user's password with passwd USERNAME.
-    Do visudo, or, if you don't know how to use vi, do EDITOR=nano visudo, and do the following changes:
-        Add the line Defaults pwfeedback, preferably before ## Runas alias specification, if you want asterisks when inputting your password.
-        Uncomment the line # %wheel ALL=(ALL) ALL.
+## Up the network
+
+- Do `nmtui` and setup your Internet connection or [nmcli](https://wiki.archlinux.org/title/NetworkManager#Usage).
+
+## Download Fonts
+
+- In order for Chinese, Japanese, Korean characters to be displayed correctly, you need to download fonts:
+```
+yay -Syu noto-fonts noto-fonts-cjk noto-fonts-emoji
+```
+- If you need more Unicode characters, then you can find fonts for them separately, I will give only some:
+```
+yay -S nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola
+```
 
 
+## BSPWM
+Packages for configuring and running bspwm
+```
+yay -S bspwm xorg-server sxhkd xorg-apps xorg-xinit
+```
+
+## POLYBAR
+
+## SOUND
+
+## 
 
 
 
