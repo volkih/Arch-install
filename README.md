@@ -270,7 +270,7 @@ ln -svf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 ```
 chsh -s /bin/zsh.
 ```
-- Now add a user by doing `useradd -m -U -G wheel -s /bin/zsh -c "REAL NAME" USERNAME`, REAL NAME being the user's real name, and USERNAME a valid username.
+- Now add a user by doing `useradd -m -U -G wheel -s /bin/zsh -c "REAL NAME" USERNAME`, __REAL NAME__ being the user's real name, and **USERNAME** a valid username.
 - Usernames in Unix-like OSs are valid if they're compatible with the regex expression `^[a-z_]([0-9a-z_-]{0,31}|[0-9a-z_-]{0,30}\$)$`.
 - You can check if a username is valid by clicking [here](https://regexr.com/7fuv3).
 - Set the user's password with `passwd USERNAME`.
@@ -280,6 +280,7 @@ chsh -s /bin/zsh.
 ```
 USERNAME ALL=(ALL:ALL) ALL
 ```
+where USERNAME you write above 
 
 ## Up the network
 
