@@ -227,11 +227,11 @@ pacman -Syu refind | grep upgrading.
 - Uncomment the line `#extra_kernel_version_strings linux-lts,linux`.
 - Do
 ```
-echo root=UUID=$(blkid -s UUID -o value /dev/disk/by-partlabel/ROOT) > /boot/refind_linux.conf.
+echo root=UUID=$(blkid -s UUID -o value /dev/disk/by-partlabel/ROOT) > /boot/refind_linux.conf
 ```
 - If you make **SWAP**, do
 ```
-echo resume=UUID=$(blkid -s UUID -o value /dev/disk/by-partlabel/SWAP) >> /boot/refind_linux.conf.
+echo resume=UUID=$(blkid -s UUID -o value /dev/disk/by-partlabel/SWAP) >> /boot/refind_linux.conf
 ```
 - The only differences between these two commands is the beginning (root and resume), the partition (ROOT and SWAP), and the output redirection operator (> and >>).
 - Finally, edit the file `/boot/refind_linux.conf` to contain the following:
@@ -252,6 +252,26 @@ You can now do `poweroff` or `reboot`.
 # Post-installation system setup
 ## At the end of this section, I will give a complete command with all packages so that you do not need to install individually
 
+## AUR Helper
+
+
+
+## Creating a user
+
+- Start by logining in as `root`. Do
+```
+ln -svf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+```
+--Change root's shell by doing chsh -s /bin/zsh.
+    Do timedatectl set-ntp true and timedatectl status again to make sure the time is setup correctly. The RTC and Universal time should be in UTC and the Local time in your timezone.
+
+    Now add a user by doing useradd -m -U -G wheel -s /bin/zsh -c "REAL NAME" USERNAME, REAL NAME being the user's real name, and USERNAME a valid username.
+    Usernames in Unix-like OSs are valid if they're compatible with the regex expression ^[a-z_]([0-9a-z_-]{0,31}|[0-9a-z_-]{0,30}\$)$.
+    You can check if a username is valid by clicking here.
+    Set the user's password with passwd USERNAME.
+    Do visudo, or, if you don't know how to use vi, do EDITOR=nano visudo, and do the following changes:
+        Add the line Defaults pwfeedback, preferably before ## Runas alias specification, if you want asterisks when inputting your password.
+        Uncomment the line # %wheel ALL=(ALL) ALL.
 
 
 
