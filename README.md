@@ -3,7 +3,7 @@ Arch installation and its periphery. Also the programs I use
 
 When installing, also refer to [Archlinux.org](https://wiki.archlinux.org/title/installation_guide_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9))
 
-# Before start
+## Before start
 
 - Write the Arch Linux ISO into a USB drive. There are several tools available for this, like dd, balenaEtcher, Rufus, or my personal favorite, Rufus.
 - Disable Secure Boot in the UEFI.
@@ -22,7 +22,7 @@ Select a layout, pass the name of the appropriate loadkeys(1) file, without the 
 
 where ** - insert your language
 
-# Internet connection
+## Internet connection
 
 Time to connect to the Internet:
 
@@ -41,13 +41,13 @@ The connection can be checked using the [ping](https://wiki.archlinux.org/title/
 ping archlinux.org
 ```
 
-# Time-date
+## Time-date
 
 
 - Now that we have an Internet connection, do `timedatectl set-ntp true` to update the live system clock.
 - You can then do `timedatectl status` to check the time (in the UTC timezone).
 
-# Disk partition
+## Disk partition
 
 Onto partitioning the disk. This part is quite subjective, and can vary wildely depending on your needs. Consider reading more about this process instead of blindly following my instructions [here](https://wiki.archlinux.org/title/Arch_boot_process).
 
@@ -95,7 +95,7 @@ mount --mkdir /dev/disk/by-partlabel/ESP /mnt/boot.
 - SWAP (nvme0n1p2 @ [SWAP])
 - / (root) (nvme0n1p3 @ /mnt)
 
- # Installation
+## Installation
 
 - Do `pacman-key --refresh-keys` to ensure the keyring is up to date.
 - Do
@@ -108,7 +108,7 @@ pacstrap -i /mnt base{,-devel} btrfs-progs dkms linux{{,-lts}{,-headers},-firmwa
 genfstab -U /mnt >> /mnt/etc/fstab.
 ```
 
-# Basic system configuration
+## Basic system configuration
 
 
 - Do `arch-chroot /mnt` to go into your system.
@@ -129,7 +129,7 @@ dhcp=dhclient
 [main]
 dns=systemd-resolved
 ```
-# Time
+## Time
 
 Do `ln -svf /usr/share/zoneinfo/$(tzselect | tail -1) /etc/localtime` to set your timezone.
 
@@ -142,7 +142,7 @@ If you use a dual boot like me, then in order to not lose time when switching sy
  sudo timedatectl set-local-rtc 1 --adjust-system-clock
 ```
 
-# Locale, font
+## Locale, font
 
 - Open the file `/etc/locale.gen.` Uncomment the `en_US.UTF-8` and any other locales you want to use.
 - Do `locale-gen` to generate the uncommented locales.
@@ -151,7 +151,7 @@ If you use a dual boot like me, then in order to not lose time when switching sy
 - Do `echo FONT=YOURFONT >> /etc/vconsole.conf`. **YORUFONT** being the name of the  font. You can find all fonts available in /usr/share/kbd/consolefonts.
 
 
-# Host
+## Host
 
 - Do `echo HOSTNAME > /etc/hostname`, **HOSTNAME** being the name you want your system to have.
 - The hostname must be compatible with the following regex expression: `^(:?[0-9a-zA-Z][0-9a-zA-Z-]{0,61}[0-9a-zA-Z]|[0-9a-zA-Z]{1,63})$`.
@@ -177,7 +177,7 @@ ______
 - Update the initramfs by doing `mkinitcpio -P`.
 - Do `passwd` to give the `root` user a password
 
-# Microcode updater
+## Microcode updater
 
 Install the microcode updater:
 - If you're using an Intel CPU, do
@@ -189,6 +189,64 @@ pacman -S intel-ucode.
 pacman -S amd-ucode.
 ```
 
+
+## Bootloader
+
+I use rEFInd as the bootloader, you can choose another one. You can view them [here](https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader). And here I will show you how to install rEFInd. Let's start.
+
+
+
+- Do
+```
+pacman -S refind.
+```
+- Then do 
+```
+refind-install.
+```
+Do `mkdir /etc/pacman.d/hooks` and edit the file `/etc/pacman.d/hooks/refind.hook` to contain the following:
+```
+[Trigger]
+Operation=Upgrade
+Type=Package
+Target=refind
+
+[Action]
+Description=Updating rEFInd in the ESP...
+When=PostTransaction
+Exec=/usr/bin/refind-install
+```
+- Verify the hook is working by doing
+``` 
+pacman -Syu refind | grep upgrading.
+```
+- You should see evidence that the hook detects an already existing installation of rEFInd and upgrades it.
+- Edit the file `/boot/EFI/refind/refind.conf`:
+- Change `timeout 20` to `timeout 5`.
+- Uncomment the line `#fold_linux_kernels false`.
+- Uncomment the line `#extra_kernel_version_strings linux-lts,linux`.
+- Do
+```
+echo root=UUID=$(blkid -s UUID -o value /dev/disk/by-partlabel/ROOT) > /boot/refind_linux.conf.
+```
+- If you make **SWAP**, do
+```
+echo resume=UUID=$(blkid -s UUID -o value /dev/disk/by-partlabel/SWAP) >> /boot/refind_linux.conf.
+```
+- The only differences between these two commands is the beginning (root and resume), the partition (ROOT and SWAP), and the output redirection operator (> and >>).
+- Finally, edit the file `/boot/refind_linux.conf` to contain the following:
+```
+"Arch Linux"       "root=UUID=XXXX resume=UUID=YYYY rw initrd=UCODE.img initrd=initramfs-%v.img EXTRA"
+"Arch Linux (CLI)" "root=UUID=XXXX resume=UUID=YYYY rw initrd=UCODE.img initrd=initramfs-%v.img systemd.unit=multi-user.target EXTRA"
+```
+**XXXX** and **YYYY** being the UUIDs that were already on the file (don't change them!). **UCODE** being the package you installed for the microcode updater(you can check them, do `ls /boot`). **EXTRA** being the extra kernel parameters you used to boot the live system.
+
+_____
+
+- Do `exit` and then `umount -R /mnt`.
+You can now do `poweroff` or `reboot`.
+
+## Congratulations! You've installed Arch Linux!
 
 
 
