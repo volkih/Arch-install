@@ -142,4 +142,30 @@ If you use a dual boot like me, then in order to not lose time when switching sy
  sudo timedatectl set-local-rtc 1 --adjust-system-clock
 ```
 
+# Locale, font
+
+- Open the file `/etc/locale.gen.` Uncomment the `en_US.UTF-8` and any other locales you want to use.
+- Do `locale-gen` to generate the uncommented locales.
+- Do `echo LANG=LOCALE > /etc/locale.conf`, **LOCALE** being your preferred locale from the ones you just generated.
+- Do `echo KEYMAP=KEYMAP > /etc/vconsole.conf`, **KEYMAP** being the name of the keymap you're using (set when you used the loadkeys command earlier).
+- Do `echo FONT=YOURFONT >> /etc/vconsole.conf`. **YORUFONT** being the name of the  font. You can find all fonts available in /usr/share/kbd/consolefonts.
+
+
+# Host
+
+- Do `echo HOSTNAME > /etc/hostname`, **HOSTNAME** being the name you want your system to have.
+- The hostname must be compatible with the following regex expression: `^(:?[0-9a-zA-Z][0-9a-zA-Z-]{0,61}[0-9a-zA-Z]|[0-9a-zA-Z]{1,63})$`.
+- You can click [here](https://regexr.com/4f7ah) and put the hostname you want your computer to have in the text field to see if you can actually use it.
+- Edit the file `/etc/hosts` to contain the following:
+```
+# Static table lookup for hostnames.
+# See hosts(5) for details.
+
+127.0.0.1 localhost.localdomain localhost localhost-ipv4
+::1       localhost.localdomain localhost localhost-ipv6
+127.0.0.1 HOSTNAME.localdomain  HOSTNAME  HOSTNAME-ipv4
+::1       HOSTNAME.localdomain  HOSTNAME  HOSTNAME-ipv6
+```
+
+
 
