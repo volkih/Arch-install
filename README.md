@@ -1,4 +1,5 @@
 # Arch-install(Installing Arch Linux)
+
 Arch installation and its periphery. Also the programs I use
 
 When installing, also refer to [Archlinux.org](https://wiki.archlinux.org/title/installation_guide_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9))
@@ -12,14 +13,16 @@ When installing, also refer to [Archlinux.org](https://wiki.archlinux.org/title/
 
 The default console layout is US. You can view the list of available layouts using the command:
 
-```
+```terminal
 ls /usr/share/kbd/keymaps/**/*.map.gz
 ```
 
 Select a layout, pass the name of the appropriate loadkeys(1) file, without the full path and extension. For example, to select the Russian layout, run the command:
-```
+
+```terminal
 loadkeys ru
 ```
+
 instead of `ru` you can insert your language
 
 ## Internet connection
@@ -42,7 +45,6 @@ ping archlinux.org
 ```
 
 ## Time-date
-
 
 - Now that we have an Internet connection, do `timedatectl set-ntp true` to update the live system clock.
 - You can then do `timedatectl status` to check the time (in the UTC timezone).
@@ -78,18 +80,24 @@ I'll be using a single disk, creating the necessary partitions (ESP and root) an
   - Do `mkswap -L SWAP /dev/disk/by-partlabel/SWAP` to format the **SWAP** partition.
   - Do `mkfs.btrfs -L ROOT /dev/disk/by-partlabel/ROOT` to format the **/ (root)** partition.
 
-- Activate the **SWAP** partition with 
+- Activate the **SWAP** partition with
+
 ```
 swapon /dev/disk/by-partlabel/SWAP.
 ```
+
 - Mount the / (root) partition with
+
 ```
 mount /dev/disk/by-partlabel/ROOT /mnt.
 ```
-Mount the ESP with 
+
+Mount the ESP with
+
 ```
 mount --mkdir /dev/disk/by-partlabel/ESP /mnt/boot.
 ```
+
 - Do `lsblk /dev/nvme0n1` to verify everything is correct. If you did exactly what I did, you should have something like this:
 - ESP (nvme0n1p1 @ /mnt/boot)
 - SWAP (nvme0n1p2 @ [SWAP])
@@ -99,36 +107,43 @@ mount --mkdir /dev/disk/by-partlabel/ESP /mnt/boot.
 
 - Do `pacman-key --refresh-keys` to ensure the keyring is up to date.
 - Do
+
 ```
 pacstrap -i /mnt base{,-devel} btrfs-progs dkms linux{{,-lts}{,-headers},-firmware}
 ```
 
-- Create the fstab file with 
+- Create the fstab file with
+
 ```
 genfstab -U /mnt >> /mnt/etc/fstab.
 ```
 
 ## Basic system configuration
 
-
 - Do `arch-chroot /mnt` to go into your system.
 - Install some important packages with
+
 ```
 pacman -S dhclient dhcpcd git man-{db,pages} networkmanager openssh polkit vi neovim zsh{,-autosuggestions,completions,history-substring-search,syntax-highlighting}}.
 
 ```
+
 I use neovim to edit/write files, you can install yours like nano, vim and etc
 
 - Edit the file `/etc/NetworkManager/conf.d/dhcp.conf` to contain the following:
+
 ```
 [main]
 dhcp=dhclient
 ```
+
 - Edit the file `/etc/NetworkManager/conf.d/dns.conf` to contain the following:
+
 ```
 [main]
 dns=systemd-resolved
 ```
+
 ## Time
 
 Do `ln -svf /usr/share/zoneinfo/$(tzselect | tail -1) /etc/localtime` to set your timezone.
@@ -138,6 +153,7 @@ Then, do `hwclock -w` to update the hardware clock.
 You can do `hwclock -r` to see the current time stored by the hardware clock. You'll notice that it takes the timezone into account.
 
 If you use a dual boot like me, then in order to not lose time when switching systems from linux to windows, use:
+
 ```
  sudo timedatectl set-local-rtc 1 --adjust-system-clock
 ```
@@ -150,13 +166,13 @@ If you use a dual boot like me, then in order to not lose time when switching sy
 - Do `echo KEYMAP=KEYMAP > /etc/vconsole.conf`, **KEYMAP** being the name of the keymap you're using (set when you used the loadkeys command earlier).
 - Do `echo FONT=YOURFONT >> /etc/vconsole.conf`. **YORUFONT** being the name of the  font. You can find all fonts available in /usr/share/kbd/consolefonts.
 
-
 ## Host
 
 - Do `echo HOSTNAME > /etc/hostname`, **HOSTNAME** being the name you want your system to have.
 - The hostname must be compatible with the following regex expression: `^(:?[0-9a-zA-Z][0-9a-zA-Z-]{0,61}[0-9a-zA-Z]|[0-9a-zA-Z]{1,63})$`.
 - You can click [here](https://regexr.com/7fuv3) and put the hostname you want your computer to have in the text field to see if you can actually use it.
 - Edit the file `/etc/hosts` to contain the following:
+
 ```
 # Static table lookup for hostnames.
 # See hosts(5) for details.
@@ -180,31 +196,37 @@ ______
 ## Microcode updater
 
 Install the microcode updater:
+
 - If you're using an Intel CPU, do
+
 ```
 pacman -S intel-ucode.
 ```
+
 - If you're using an AMD CPU, do
+
 ```
 pacman -S amd-ucode.
 ```
-
 
 ## Bootloader
 
 I use rEFInd as the bootloader, you can choose another one. You can view them [here](https://wiki.archlinux.org/title/Arch_boot_process#Boot_loader). And here I will show you how to install rEFInd. Let's start.
 
-
-
 - Do
+
 ```
 pacman -S refind.
 ```
-- Then do 
+
+- Then do
+
 ```
 refind-install.
 ```
+
 Do `mkdir /etc/pacman.d/hooks` and edit the file `/etc/pacman.d/hooks/refind.hook` to contain the following:
+
 ```
 [Trigger]
 Operation=Upgrade
@@ -216,29 +238,38 @@ Description=Updating rEFInd in the ESP...
 When=PostTransaction
 Exec=/usr/bin/refind-install
 ```
+
 - Verify the hook is working by doing
-``` 
+
+```
 pacman -Syu refind | grep upgrading.
 ```
+
 - You should see evidence that the hook detects an already existing installation of rEFInd and upgrades it.
 - Edit the file `/boot/EFI/refind/refind.conf`:
 - Change `timeout 20` to `timeout 5`.
 - Uncomment the line `#fold_linux_kernels false`.
 - Uncomment the line `#extra_kernel_version_strings linux-lts,linux`.
 - Do
+
 ```
 echo root=UUID=$(blkid -s UUID -o value /dev/disk/by-partlabel/ROOT) > /boot/refind_linux.conf
 ```
+
 - If you make **SWAP**, do
+
 ```
 echo resume=UUID=$(blkid -s UUID -o value /dev/disk/by-partlabel/SWAP) >> /boot/refind_linux.conf
 ```
+
 - The only differences between these two commands is the beginning (root and resume), the partition (ROOT and SWAP), and the output redirection operator (> and >>).
 - Finally, edit the file `/boot/refind_linux.conf` to contain the following:
+
 ```
 "Arch Linux"       "root=UUID=XXXX resume=UUID=YYYY rw initrd=UCODE.img initrd=initramfs-%v.img EXTRA"
 "Arch Linux (CLI)" "root=UUID=XXXX resume=UUID=YYYY rw initrd=UCODE.img initrd=initramfs-%v.img systemd.unit=multi-user.target EXTRA"
 ```
+
 **XXXX** and **YYYY** being the UUIDs that were already on the file (don't change them!). **UCODE** being the package you installed for the microcode updater(you can check them, do `ls /boot`). **EXTRA** being the extra kernel parameters you used to boot the live system.
 
 _____
@@ -246,16 +277,17 @@ _____
 - Do `exit` and then `umount -R /mnt`.
 You can now do `poweroff` or `reboot`.
 
-## Congratulations! You've installed Arch Linux!
-
+## Congratulations! You've installed Arch Linux
 
 # Post-installation system setup
+
 ## At the end of this section, I will give a complete command with all packages so that you do not need to install individually
 
 ## AUR Helper
 
 Instead of pacman, I use yay - it's good Pacman wrapper and AUR helper. In the future, I will use it to update/install packages
 Install command:
+
 ```
 mkdir ~/build && cd build && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 ```
@@ -263,24 +295,30 @@ mkdir ~/build && cd build && git clone https://aur.archlinux.org/yay.git && cd y
 ## Creating a user
 
 - Start by logining in as `root`. Do
+
 ```
 ln -svf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 ```
-- Change root's shell by doing 
+
+- Change root's shell by doing
+
 ```
 chsh -s /bin/zsh.
 ```
-- Now add a user by doing `useradd -m -U -G wheel -s /bin/zsh -c "REAL NAME" USERNAME`, __REAL NAME__ being the user's real name, and **USERNAME** a valid username.
+
+- Now add a user by doing `useradd -m -U -G wheel -s /bin/zsh -c "REAL NAME" USERNAME`, **REAL NAME** being the user's real name, and **USERNAME** a valid username.
 - Usernames in Unix-like OSs are valid if they're compatible with the regex expression `^[a-z_]([0-9a-z_-]{0,31}|[0-9a-z_-]{0,30}\$)$`.
 - You can check if a username is valid by clicking [here](https://regexr.com/7fuv3).
 - Set the user's password with `passwd USERNAME`.
 - do `EDITOR=nvim visudo`, and do the following changes:
   - type `/` and write `root ALL` and press enter
   - on a new line write:
+
 ```
 USERNAME ALL=(ALL:ALL) ALL
 ```
-where USERNAME you write above 
+
+where USERNAME you write above
 
 ## Up the network
 
@@ -289,19 +327,25 @@ where USERNAME you write above
 ## Download Fonts
 
 - In order for Chinese, Japanese, Korean characters to be displayed correctly, you need to download fonts:
+
 ```
 yay -Syu noto-fonts noto-fonts-cjk noto-fonts-emoji
 ```
+
 - If you need more Unicode characters, then you can find fonts for them separately, I will give only some:
+
 ```
 yay -S nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola
 ```
+
 ## SOUND
 
 yay -S pulseaudio alsa
 
 ## BSPWM
+
 Packages for configuring and running bspwm
+
 ```
 yay -S bspwm xorg-server sxhkd xorg-apps xorg-xinit
 ```
@@ -311,13 +355,7 @@ yay -S bspwm xorg-server sxhkd xorg-apps xorg-xinit
 ```
 yay -S polybar
 ```
+
 ## ZSH and OH-MY-ZSH
 
-## 
-
-
-
-
-
-
-
+##
