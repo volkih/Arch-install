@@ -2,7 +2,7 @@
 
 Arch installation and its periphery. Also the programs I use
 
-When installing, also refer to [Archlinux.org](https://wiki.archlinux.org/title/installation_guide_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9))
+When installing, also prefer to [Archlinux.org](https://wiki.archlinux.org/title/installation_guide_(%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9))
 
 ## Before start
 
@@ -340,22 +340,27 @@ yay -S nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola
 
 ## SOUND
 
+```terminal
 yay -S pulseaudio alsa
+```
 
 ## BSPWM
 
 Packages for configuring and running bspwm
 
-```
+```terminal
 yay -S bspwm xorg-server sxhkd xorg-apps xorg-xinit
 ```
 
 ## POLYBAR
 
-```
+```terminal
 yay -S polybar
 ```
 
 ## ZSH and OH-MY-ZSH
+
+
+
 
 ##
