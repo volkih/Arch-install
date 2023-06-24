@@ -296,7 +296,9 @@ yay -Syu noto-fonts noto-fonts-cjk noto-fonts-emoji
 ```
 yay -S nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola
 ```
+## SOUND
 
+yay -S pulseaudio alsa
 
 ## BSPWM
 Packages for configuring and running bspwm
@@ -306,7 +308,7 @@ yay -S bspwm xorg-server sxhkd xorg-apps xorg-xinit
 
 ## POLYBAR
 
-## SOUND
+## ZSH and OH-MY-ZSH
 
 ## 
 
