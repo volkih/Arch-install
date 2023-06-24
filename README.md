@@ -17,10 +17,10 @@ ls /usr/share/kbd/keymaps/**/*.map.gz
 ```
 
 Select a layout, pass the name of the appropriate loadkeys(1) file, without the full path and extension. For example, to select the Russian layout, run the command:
-
-`loadkeys **`
-
-where ** - insert your language
+```
+loadkeys ru
+```
+instead of `ru` you can insert your language
 
 ## Internet connection
 
@@ -308,6 +308,9 @@ yay -S bspwm xorg-server sxhkd xorg-apps xorg-xinit
 
 ## POLYBAR
 
+```
+yay -S polybar
+```
 ## ZSH and OH-MY-ZSH
 
 ## 
