@@ -318,7 +318,7 @@ chsh -s /bin/zsh.
 USERNAME ALL=(ALL:ALL) ALL
 ```
 
-where USERNAME you write above
+where **USERNAME** you write above
 
 ## Up the network
 
@@ -341,7 +341,7 @@ yay -S nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola
 ## SOUND
 
 ```terminal
-yay -S pulseaudio alsa
+yay -S pulseaudio alsa pavucontrol
 ```
 
 ## BSPWM
