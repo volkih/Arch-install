@@ -338,7 +338,7 @@ yay -Syu noto-fonts noto-fonts-cjk noto-fonts-emoji
 - If you need more Unicode characters, then you can find fonts for them separately, I will give only some:
 
 ```
-yay -S nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola ttf-font-awesome ttf-fira-code
+yay -S nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola ttf-font-awesome ttf-fira-code ttf-material-design-icons-desktop-git
 ```
 
 ## SOUND
@@ -432,11 +432,42 @@ yay -S firefox opera crow-translate libreoffice-fresh texlive texlive-lang biber
 - [Nitrogen](https://wiki.archlinux.org/title/Nitrogen) for wallpapers
 - [Python](https://www.python.org/) 
 
+## FreeGPT
+
+Install:
+
+- Install python and git if they are not already installed, to do this, open a terminal and run:
+
+```
+yay -Syu python python-pip
+```
+
+- Then download freegpt-webui:
+```
+git clone https://github.com/Em1tSan/freegpt-webui-ru
+```
+
+- open the freegpt-webui-ru folder:
+```
+cd freegpt-webui-ru
+```
+
+Install the required packages:
+```
+pip3 install -r requirements.txt
+```
+
+- After that, you can run:
+```
+python run.py
+```
+- If everything is in order, then after starting, you can open the address in the browser: 
+`http://127.0.0.1:1338/`
 
 ## ALL PACKAGES
 
 ```terminal
-yay -S pulseaudio alsa pavucontrol libinput polybar bspwm xorg-server mesa sxhkd xorg-apps xorg-xinit lightdm lightdm-gtk-greeter firefox crow-translate libreoffice-fresh texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip noto-fonts noto-fonts-cjk noto-fonts-emoji nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola ttf-font-awesome ttf-fira-code
+yay -S pulseaudio alsa pavucontrol libinput polybar bspwm xorg-server mesa sxhkd xorg-apps xorg-xinit lightdm lightdm-gtk-greeter firefox crow-translate libreoffice-fresh texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip noto-fonts noto-fonts-cjk noto-fonts-emoji nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola ttf-font-awesome ttf-fira-code ttf-material-design-icons-desktop-git
 ```
 
 
