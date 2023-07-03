@@ -421,7 +421,7 @@ There is also a ready-made config in the repository.
 ## Other soft
 
 ```terminal
-yay -S firefox opera crow-translate libreoffice-fresh texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip
+yay -S firefox opera crow-translate libreoffice-fresh texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip alacritty
 ```
 - [Latex](https://www.latex-project.org/)
 - [Firefox](https://www.mozilla.org/ru/firefox/new/)
@@ -430,7 +430,8 @@ yay -S firefox opera crow-translate libreoffice-fresh texlive texlive-lang biber
 - [LibreOffice](https://wiki.archlinux.org/title/LibreOffice)
 - [Picom](https://wiki.archlinux.org/title/picom)
 - [Nitrogen](https://wiki.archlinux.org/title/Nitrogen) for wallpapers
-- [Python](https://www.python.org/) 
+- [Python](https://www.python.org/)
+- [Alacritty](https://wiki.archlinux.org/title/Alacritty) 
 
 ## FreeGPT
 
@@ -467,7 +468,7 @@ python run.py
 ## ALL PACKAGES
 
 ```terminal
-yay -S pulseaudio alsa pavucontrol libinput polybar bspwm xorg-server mesa sxhkd xorg-apps xorg-xinit lightdm lightdm-gtk-greeter firefox crow-translate libreoffice-fresh texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip noto-fonts noto-fonts-cjk noto-fonts-emoji nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola ttf-font-awesome ttf-fira-code ttf-material-design-icons-desktop-git
+yay -S pulseaudio alsa pavucontrol libinput polybar bspwm xorg-server mesa sxhkd xorg-apps xorg-xinit lightdm lightdm-gtk-greeter firefox crow-translate libreoffice-fresh alacritty texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip noto-fonts noto-fonts-cjk noto-fonts-emoji nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola ttf-font-awesome ttf-fira-code ttf-material-design-icons-desktop-git
 ```
 
 
