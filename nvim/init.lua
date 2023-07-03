@@ -1,0 +1,17 @@
+require "plugins.packer_install"
+
+require "base.search"
+require "base.tabs"
+require "base.other"
+require "keys.main"
+
+require "plugins.treesitter-plug"
+require "plugins.lualine-plug"
+require "plugins.telescope_plug"
+require "plugins.onedark-plug"
+require "plugins.latex-plug"
+require "plugins.cmp-plug"
+require "plugins.true-zen-plug"
+require "plugins.lsp-plug"
+require "plugins.cmp-lsp"
+require "plugins.luasnip-plug"
