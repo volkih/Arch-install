@@ -13,13 +13,13 @@ When installing, also prefer to [Archlinux.org](https://wiki.archlinux.org/title
 
 The default console layout is US. You can view the list of available layouts using the command:
 
-```terminal
+```shell
 ls /usr/share/kbd/keymaps/**/*.map.gz
 ```
 
 Select a layout, pass the name of the appropriate loadkeys(1) file, without the full path and extension. For example, to select the Russian layout, run the command:
 
-```terminal
+```shell
 loadkeys ru
 ```
 
@@ -343,7 +343,7 @@ yay -S nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola ttf-font-aw
 
 ## SOUND
 
-```terminal
+```shell
 yay -S pulseaudio alsa pavucontrol
 ```
 
@@ -351,7 +351,7 @@ yay -S pulseaudio alsa pavucontrol
 
 Packages for configuring and running bspwm
 
-```terminal
+```shell
 yay -S bspwm xorg-server mesa sxhkd xorg-apps xorg-xinit lightdm lightdm-gtk-greeter
 ```
 - [LightDM](https://wiki.archlinux.org/title/LightDM) -it is a cross-desktop [Screen manager](https://wiki.archlinux.org/title/Display_manager).
@@ -362,7 +362,7 @@ yay -S bspwm xorg-server mesa sxhkd xorg-apps xorg-xinit lightdm lightdm-gtk-gre
 
 Edit the file `/etc/X11/xorg.conf.d/00-keyboard.conf`
 
-```terminal
+```shell
 Section "InputClass"  
     Identifier "system-keyboard"  
     MatchIsKeyboard "on"  
@@ -375,7 +375,7 @@ EndSection
 
 ## Touchpad
 
-```terminal
+```shell
 yay -S libinput
 ```
 
@@ -395,7 +395,7 @@ EndSection
 
 Install polybar is pretty easy:
 
-```terminal
+```shell
 yay -S polybar
 ```
 
@@ -410,7 +410,7 @@ pip3 install requests
 Since we installed zsh earlier, let's make the terminal pretty and install [Oh-my-zsh](https://ohmyz.sh/).
 [Oh-My-Zsh](https://ohmyz.sh/) is a popular and actively developing Zsh framework that allows you to flexibly customize your terminal shell. Let's install it:
 
-```terminal
+```shell
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
@@ -420,7 +420,7 @@ There is also a ready-made config in the repository.
 
 ## Other soft
 
-```terminal
+```shell
 yay -S firefox opera crow-translate libreoffice-fresh texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip alacritty escrotum-git inkscape 
 ```
 - [Latex](https://www.latex-project.org/)
@@ -468,7 +468,7 @@ python run.py
 
 ## ALL PACKAGES
 
-```terminal
+```shell
 yay -S pulseaudio alsa pavucontrol libinput polybar bspwm xorg-server mesa sxhkd xorg-apps xorg-xinit lightdm lightdm-gtk-greeter firefox crow-translate libreoffice-fresh alacritty texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip noto-fonts noto-fonts-cjk noto-fonts-emoji nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola ttf-font-awesome ttf-fira-code ttf-material-design-icons-desktop-git
 ```
 
