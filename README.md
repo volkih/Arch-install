@@ -440,22 +440,24 @@ Install:
 
 - Install python and git if they are not already installed, to do this, open a terminal and run:
 
-```
+```shell
 yay -Syu python python-pip
 ```
 
 - Then download freegpt-webui:
-```
+```shell
 git clone https://github.com/Em1tSan/freegpt-webui-ru
 ```
 
 - open the freegpt-webui-ru folder:
-```
+
+```shell
 cd freegpt-webui-ru
 ```
 
 Install the required packages:
-```
+
+```shell
 pip3 install -r requirements.txt
 ```
 
