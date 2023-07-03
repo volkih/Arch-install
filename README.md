@@ -279,6 +279,9 @@ You can now do `poweroff` or `reboot`.
 
 ## Congratulations! You've installed Arch Linux
 
+
+
+
 # Post-installation system setup
 
 ## At the end of this section, I will give a complete command with all packages so that you do not need to install individually
@@ -335,7 +338,7 @@ yay -Syu noto-fonts noto-fonts-cjk noto-fonts-emoji
 - If you need more Unicode characters, then you can find fonts for them separately, I will give only some:
 
 ```
-yay -S nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola
+yay -S nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola ttf-font-awesome ttf-fira-code
 ```
 
 ## SOUND
@@ -349,16 +352,60 @@ yay -S pulseaudio alsa pavucontrol
 Packages for configuring and running bspwm
 
 ```terminal
-yay -S bspwm xorg-server sxhkd xorg-apps xorg-xinit
+yay -S bspwm xorg-server mesa sxhkd xorg-apps xorg-xinit lightdm lightdm-gtk-greeter
+```
+- [LightDM](https://wiki.archlinux.org/title/LightDM) -it is a cross-desktop [Screen manager](https://wiki.archlinux.org/title/Display_manager).
+
+- You can also select the welcome screen yourself. Here I installed the default lightdm-gtk-greeter. See [here](https://wiki.archlinux.org/title/LightDM#Installation)
+
+## Keyboard
+
+Edit the file `/etc/X11/xorg.conf.d/00-keyboard.conf`
+
+```terminal
+Section "InputClass"  
+    Identifier "system-keyboard"  
+    MatchIsKeyboard "on"  
+    Option "XkbLayout" "us,ru"  
+    Option "XkbModel" "pc104"  
+    Option "XkbOptions" "grp:alt_shift_toggle"  
+EndSection 
+
 ```
 
+## Touchpad
+
+```terminal
+yay -S libinput
+```
+Edit the file `/etc/X11/xorg.conf.d/30-touchpad.conf`
+
 ## POLYBAR
+
+Install polybar is pretty easy:
 
 ```terminal
 yay -S polybar
 ```
 
+In my repository you can take my polybar setup.
+
 ## ZSH and OH-MY-ZSH
 
+Since we installed zsh earlier, let's make the terminal pretty and install [Oh-my-zsh](https://ohmyz.sh/).
+[Oh-My-Zsh](https://ohmyz.sh/) is a popular and actively developing Zsh framework that allows you to flexibly customize your terminal shell. Let's install it:
 
+```terminal
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+For more beautiful and detailed settings, I advise you to look at this [article](https://habr.com/ru/articles/516004/)
+
+There is also a ready-made config in the repository.
+
+## Other soft
+
+```terminal
+yay -S firefox opera crow-translate libreoffice texlive texlive-lang biber telegram-desktop
+```
 
