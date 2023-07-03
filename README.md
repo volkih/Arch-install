@@ -421,7 +421,7 @@ There is also a ready-made config in the repository.
 ## Other soft
 
 ```terminal
-yay -S firefox opera crow-translate libreoffice-fresh texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip alacritty
+yay -S firefox opera crow-translate libreoffice-fresh texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip alacritty escrotum-git inkscape 
 ```
 - [Latex](https://www.latex-project.org/)
 - [Firefox](https://www.mozilla.org/ru/firefox/new/)
@@ -432,7 +432,8 @@ yay -S firefox opera crow-translate libreoffice-fresh texlive texlive-lang biber
 - [Nitrogen](https://wiki.archlinux.org/title/Nitrogen) for wallpapers
 - [Python](https://www.python.org/)
 - [Alacritty](https://wiki.archlinux.org/title/Alacritty) 
-
+- [Escrotum](https://github.com/Roger/escrotum)
+- [Inkscape](https://inkscape.org)
 ## FreeGPT
 
 Install:
