@@ -417,6 +417,13 @@ There is also a ready-made config in the repository.
 ## Other soft
 
 ```terminal
-yay -S firefox opera crow-translate libreoffice texlive texlive-lang biber telegram-desktop
+yay -S firefox opera crow-translate libreoffice-still texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip
 ```
-
+- [Latex](https://www.latex-project.org/)
+- [Firefox](https://www.mozilla.org/ru/firefox/new/)
+- [Crow-translate](https://crow-translate.github.io/)
+- [Telegram](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjZjeiGxPL_AhVOgosKHdDrDVEQFnoECAYQAQ&url=https%3A%2F%2Fweb.telegram.org%2F&usg=AOvVaw0lI4JHsSdBRCge6TQdJIip&opi=89978449)
+- [LibreOffice](https://wiki.archlinux.org/title/LibreOffice)
+- [Picom](https://wiki.archlinux.org/title/picom)
+- [Nitrogen](https://wiki.archlinux.org/title/Nitrogen) for wallpapers
+- [Python](https://www.python.org/) 
