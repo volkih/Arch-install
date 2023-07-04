@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
 
 
   use 'Pocco81/true-zen.nvim'
+	use 'Pocco81/auto-save.nvim'
   use 'kyazdani42/nvim-web-devicons'
 
 	use {
@@ -63,7 +64,6 @@ return require('packer').startup(function(use)
 
 	use 'KeitaNakamura/tex-conceal.vim'
   
-	use 'Pocco81/auto-save.nvim'
 
 	use {
 			'numToStr/Comment.nvim',
