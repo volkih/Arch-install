@@ -434,6 +434,7 @@ yay -S firefox opera crow-translate libreoffice-fresh texlive texlive-lang biber
 - [Alacritty](https://wiki.archlinux.org/title/Alacritty) 
 - [Escrotum](https://github.com/Roger/escrotum)
 - [Inkscape](https://inkscape.org)
+- [Dmenu](https://wiki.archlinux.org/title/Dmenu) and [fork](https://github.com/firecat53/networkmanager-dmenu) for NetworkManager
 ## FreeGPT
 
 Install:
