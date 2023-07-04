@@ -381,7 +381,7 @@ yay -S libinput
 
 Edit the file `/etc/X11/xorg.conf.d/30-touchpad.conf`
 
-```
+```shell
 Section "InputClass"
     Identifier "touchpad"
     Driver "libinput"
@@ -421,7 +421,7 @@ There is also a ready-made config in the repository.
 ## Other soft
 
 ```shell
-yay -S firefox opera crow-translate libreoffice-fresh texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip alacritty escrotum-git inkscape 
+yay -S firefox opera crow-translate libreoffice-fresh texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip alacritty escrotum-git inkscape dmenu networkmanager-dmenu-git
 ```
 - [Latex](https://www.latex-project.org/)
 - [Firefox](https://www.mozilla.org/ru/firefox/new/)
@@ -471,7 +471,7 @@ python run.py
 ## ALL PACKAGES
 
 ```shell
-yay -S pulseaudio alsa pavucontrol libinput polybar bspwm xorg-server mesa sxhkd xorg-apps xorg-xinit lightdm lightdm-gtk-greeter firefox crow-translate libreoffice-fresh alacritty texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip noto-fonts noto-fonts-cjk noto-fonts-emoji nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola ttf-font-awesome ttf-fira-code ttf-material-design-icons-desktop-git
+yay -S pulseaudio alsa pavucontrol libinput polybar bspwm xorg-server mesa sxhkd xorg-apps xorg-xinit lightdm lightdm-gtk-greeter firefox crow-translate libreoffice-fresh alacritty texlive texlive-lang biber telegram-desktop picom nitrogen python python-pip noto-fonts noto-fonts-cjk noto-fonts-emoji nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola ttf-font-awesome ttf-fira-code ttf-material-design-icons-desktop-git dmenu networkmanager-dmenu-git
 ```
 
 
