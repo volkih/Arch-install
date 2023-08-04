@@ -1,7 +1,7 @@
 import requests
 
 
-CITY = "625144"
+CITY = "INSERT_YOUR_CITY"
 API_KEY = "INSERT_YOUR_API_KEY"
 UNITS = "Metric"
 UNIT_KEY = "C"
