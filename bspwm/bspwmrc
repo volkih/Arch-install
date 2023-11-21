@@ -2,6 +2,7 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 crow &
+numlockx &
 alacritty &
 nitrogen --restore &
 picom --experimental-backend &
@@ -59,5 +60,4 @@ bspc rule -a Media viewer rectangle=1350x900+285+90 state=floating
 bspc rule -a Zathura state=tiled
 bspc rule -a discord state=floating
 bspc rule -a zoom state=floating
-bspc rule -a gmail-desktop state=floating
-bspc rule -a opera desktop='^3'
+bspc rule -a Opera desktop='^3'
