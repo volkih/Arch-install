@@ -1,8 +1,8 @@
 import requests
 
 
-CITY = "INSERT_YOUR_CITY"
-API_KEY = "INSERT_YOUR_API_KEY"
+CITY = "625144"
+API_KEY = "e128e72456ce996ac0286fd9f1650b1e"
 UNITS = "Metric"
 UNIT_KEY = "C"
 
