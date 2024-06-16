@@ -83,19 +83,19 @@ I'll be using a single disk, creating the necessary partitions (ESP and root) an
 - Activate the **SWAP** partition with
 
 ```
-swapon /dev/disk/by-partlabel/SWAP.
+swapon /dev/disk/by-partlabel/SWAP
 ```
 
 - Mount the / (root) partition with
 
 ```
-mount /dev/disk/by-partlabel/ROOT /mnt.
+mount /dev/disk/by-partlabel/ROOT /mnt
 ```
 
 Mount the ESP with
 
 ```
-mount --mkdir /dev/disk/by-partlabel/ESP /mnt/boot.
+mount --mkdir /dev/disk/by-partlabel/ESP /mnt/boot
 ```
 
 - Do `lsblk /dev/nvme0n1` to verify everything is correct. If you did exactly what I did, you should have something like this:
@@ -115,7 +115,7 @@ pacstrap -i /mnt base{,-devel} btrfs-progs dkms linux{{,-lts}{,-headers},-firmwa
 - Create the fstab file with
 
 ```
-genfstab -U /mnt >> /mnt/etc/fstab.
+genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
 ## Basic system configuration
@@ -124,7 +124,7 @@ genfstab -U /mnt >> /mnt/etc/fstab.
 - Install some important packages with
 
 ```
-pacman -S dhclient dhcpcd git man-{db,pages} networkmanager openssh polkit vi neovim zsh{,-{autosuggestions,completions,history-substring-search,syntax-highlighting}}.
+pacman -S dhclient dhcpcd git man-{db,pages} networkmanager openssh polkit vi neovim zsh{,-{autosuggestions,completions,history-substring-search,syntax-highlighting}}
 
 ```
 
@@ -200,13 +200,13 @@ Install the microcode updater:
 - If you're using an Intel CPU, do
 
 ```
-pacman -S intel-ucode.
+pacman -S intel-ucode
 ```
 
 - If you're using an AMD CPU, do
 
 ```
-pacman -S amd-ucode.
+pacman -S amd-ucode
 ```
 
 ## Bootloader
@@ -216,13 +216,13 @@ I use rEFInd as the bootloader, you can choose another one. You can view them [h
 - Do
 
 ```
-pacman -S refind.
+pacman -S refind
 ```
 
 - Then do
 
 ```
-refind-install.
+refind-install
 ```
 
 Do `mkdir /etc/pacman.d/hooks` and edit the file `/etc/pacman.d/hooks/refind.hook` to contain the following:
@@ -242,7 +242,7 @@ Exec=/usr/bin/refind-install
 - Verify the hook is working by doing
 
 ```
-pacman -Syu refind | grep upgrading.
+pacman -Syu refind | grep upgrading
 ```
 
 - You should see evidence that the hook detects an already existing installation of rEFInd and upgrades it.
