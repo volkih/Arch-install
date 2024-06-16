@@ -124,7 +124,7 @@ genfstab -U /mnt >> /mnt/etc/fstab.
 - Install some important packages with
 
 ```
-pacman -S dhclient dhcpcd git man-{db,pages} networkmanager openssh polkit vi neovim zsh{,-autosuggestions,completions,history-substring-search,syntax-highlighting}}.
+pacman -S dhclient dhcpcd git man-{db,pages} networkmanager openssh polkit vi neovim zsh{,-{autosuggestions,completions,history-substring-search,syntax-highlighting}}.
 
 ```
 
