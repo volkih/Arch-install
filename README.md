@@ -56,7 +56,6 @@ Onto partitioning the disk. This part is quite subjective, and can vary wildely 
 I'll be using a single disk, creating the necessary partitions (ESP and root) and a SWAP partition. You can choose to simply not have a SWAP partition, or instead have a SWAP file. If you want a SWAP file, check the [Arch Wiki](https://wiki.archlinux.org/title/Swap#Swap_file). You'll need a SWAP if you want hibernation.
 
 - Do `lsblk` and identify your disk. Most of the time your disk will be identified as `sda`. If you're using NVMe, it'll most likely look something like `nvme0n1`. I'll use `nvme0n1` for the example.
-- Do `gdisk /dev/nvme0n1`, and then the commands `o` and `w`. They will "erase" everything in the disk and create a new partition table.
 - Do cgdisk /dev/nvme0n1:
   - create the ESP partition (NECESSARY):
     - First sector is the default one.
@@ -338,7 +337,7 @@ yay -Syu noto-fonts noto-fonts-cjk noto-fonts-emoji
 - If you need more Unicode characters, then you can find fonts for them separately, I will give only some:
 
 ```
-yay -S nerd-fonts-noto-sans-regular-complete ttf-unifont ttf-symbola ttf-font-awesome ttf-fira-code ttf-material-design-icons-desktop-git
+yay -S tf-fira-code
 ```
 
 ## SOUND
@@ -435,39 +434,7 @@ yay -S firefox opera crow-translate libreoffice-fresh texlive texlive-lang biber
 - [Escrotum](https://github.com/Roger/escrotum)
 - [Inkscape](https://inkscape.org)
 - [Dmenu](https://wiki.archlinux.org/title/Dmenu) and [fork](https://github.com/firecat53/networkmanager-dmenu) for NetworkManager
-## FreeGPT
 
-Install:
-
-- Install python and git if they are not already installed, to do this, open a terminal and run:
-
-```shell
-yay -Syu python python-pip
-```
-
-- Then download freegpt-webui:
-```shell
-git clone https://github.com/Em1tSan/freegpt-webui-ru
-```
-
-- open the freegpt-webui-ru folder:
-
-```shell
-cd freegpt-webui-ru
-```
-
-Install the required packages:
-
-```shell
-pip3 install -r requirements.txt
-```
-
-- After that, you can run:
-```
-python run.py
-```
-- If everything is in order, then after starting, you can open the address in the browser: 
-`http://127.0.0.1:1338/`
 
 ## ALL PACKAGES
 
