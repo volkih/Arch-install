@@ -337,7 +337,7 @@ yay -Syu noto-fonts noto-fonts-cjk noto-fonts-emoji
 - If you need more Unicode characters, then you can find fonts for them separately, I will give only some (base fonts):
 
 ```
-yay -S ttf-fira-code ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-fira-cod ttf-iosevka-nerd
+yay -S ttf-fira-code ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-fira-cod ttf-iosevka-nerd ttf-font-awesome-5
 ```
 
 ## SOUND
